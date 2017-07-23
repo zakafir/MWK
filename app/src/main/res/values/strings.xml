@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">MWK</string>
+    <string name="app_name">MWK app</string>
+    <string name="numbers">Numbers</string>
+    <string name="familyMembers">Family Members</string>
+    <string name="colors">Colors</string>
+    <string name="phrases">Phrases</string>
 </resources>
