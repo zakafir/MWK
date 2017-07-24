@@ -2,17 +2,17 @@ package com.st00.afir.mwk;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class NumbersActivity extends AppCompatActivity {
 
-    public static String numbers = "one two three four five six seven eight nine ten";
-    public String[] splitNumbers;
+    private static String LOG_TAG = NumbersActivity.class.getSimpleName();
+
+    public static String englishNumbers = "one two three four five six seven eight nine ten";
+    public static String miwokNumbers = "un deux trois quatre cinq six sept huit neuf dix";
+    public String[] splitEnglishNumbers, splitMiwokNumbers;
     List<String> listOfEnglishNumbers = new ArrayList<>();
 
     @Override
@@ -20,17 +20,11 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
-        splitNumbers = numbers.split(" ");
-        //new way to add objects in a list
-        Collections.addAll(listOfEnglishNumbers, splitNumbers);
+        splitEnglishNumbers = englishNumbers.split(" ");
+        splitMiwokNumbers = miwokNumbers.split(" ");
 
-        LinearLayout rootView = (LinearLayout)findViewById(R.id.rootViewNumbers);
-
-        for(String number: listOfEnglishNumbers){
-            //adding a TextView dynamically
-            TextView wordView = new TextView(this);
-            wordView.setText(number);
-            rootView.addView(wordView);
+        for(int i = 0; i< splitEnglishNumbers.length ; ++i) {
+            listOfEnglishNumbers.add(""+i);
         }
 
     }
