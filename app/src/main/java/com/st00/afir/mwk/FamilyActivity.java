@@ -34,16 +34,16 @@ public class FamilyActivity extends AppCompatActivity {
         splitEnglishMembers = englishFamilyMembers.split(";");
         splitMiwokMembers = miwokFamilyMembers.split("\n");
 
-        listOfMembers.add(new Word(splitEnglishMembers[0], splitMiwokMembers[0]));
-        listOfMembers.add(new Word(splitEnglishMembers[1], splitMiwokMembers[1]));
-        listOfMembers.add(new Word(splitEnglishMembers[2], splitMiwokMembers[2]));
-        listOfMembers.add(new Word(splitEnglishMembers[3], splitMiwokMembers[3]));
-        listOfMembers.add(new Word(splitEnglishMembers[4], splitMiwokMembers[4]));
-        listOfMembers.add(new Word(splitEnglishMembers[5], splitMiwokMembers[5]));
-        listOfMembers.add(new Word(splitEnglishMembers[6], splitMiwokMembers[6]));
-        listOfMembers.add(new Word(splitEnglishMembers[7], splitMiwokMembers[7]));
-        listOfMembers.add(new Word(splitEnglishMembers[8], splitMiwokMembers[8]));
-        listOfMembers.add(new Word(splitEnglishMembers[9], splitMiwokMembers[9]));
+        listOfMembers.add(new Word(splitEnglishMembers[0], splitMiwokMembers[0],R.drawable.family_father));
+        listOfMembers.add(new Word(splitEnglishMembers[1], splitMiwokMembers[1],R.drawable.family_mother));
+        listOfMembers.add(new Word(splitEnglishMembers[2], splitMiwokMembers[2],R.drawable.family_son));
+        listOfMembers.add(new Word(splitEnglishMembers[3], splitMiwokMembers[3],R.drawable.family_daughter));
+        listOfMembers.add(new Word(splitEnglishMembers[4], splitMiwokMembers[4],R.drawable.family_older_brother));
+        listOfMembers.add(new Word(splitEnglishMembers[5], splitMiwokMembers[5],R.drawable.family_younger_brother));
+        listOfMembers.add(new Word(splitEnglishMembers[6], splitMiwokMembers[6],R.drawable.family_older_sister));
+        listOfMembers.add(new Word(splitEnglishMembers[7], splitMiwokMembers[7],R.drawable.family_younger_sister));
+        listOfMembers.add(new Word(splitEnglishMembers[8], splitMiwokMembers[8],R.drawable.family_grandmother));
+        listOfMembers.add(new Word(splitEnglishMembers[9], splitMiwokMembers[9],R.drawable.family_grandfather));
 
         WordAdapter adapter = new WordAdapter(this, listOfMembers);
         ListView listView = (ListView) findViewById(R.id.list);

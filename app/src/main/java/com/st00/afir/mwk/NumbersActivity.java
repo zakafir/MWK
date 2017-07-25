@@ -25,16 +25,16 @@ public class NumbersActivity extends AppCompatActivity {
         splitMiwokNumbers = miwokNumbers.split(" ");
 
         //here we deleted the for loop, because we need to add images to each item
-        listOfNumbers.add(new Word(splitEnglishNumbers[0], splitMiwokNumbers[0]));
-        listOfNumbers.add(new Word(splitEnglishNumbers[1], splitMiwokNumbers[1]));
-        listOfNumbers.add(new Word(splitEnglishNumbers[2], splitMiwokNumbers[2]));
-        listOfNumbers.add(new Word(splitEnglishNumbers[3], splitMiwokNumbers[3]));
-        listOfNumbers.add(new Word(splitEnglishNumbers[4], splitMiwokNumbers[4]));
-        listOfNumbers.add(new Word(splitEnglishNumbers[5], splitMiwokNumbers[5]));
-        listOfNumbers.add(new Word(splitEnglishNumbers[6], splitMiwokNumbers[6]));
-        listOfNumbers.add(new Word(splitEnglishNumbers[7], splitMiwokNumbers[7]));
-        listOfNumbers.add(new Word(splitEnglishNumbers[8], splitMiwokNumbers[8]));
-        listOfNumbers.add(new Word(splitEnglishNumbers[9], splitMiwokNumbers[9]));
+        listOfNumbers.add(new Word(splitEnglishNumbers[0], splitMiwokNumbers[0],R.drawable.number_one));
+        listOfNumbers.add(new Word(splitEnglishNumbers[1], splitMiwokNumbers[1],R.drawable.number_two));
+        listOfNumbers.add(new Word(splitEnglishNumbers[2], splitMiwokNumbers[2],R.drawable.number_three));
+        listOfNumbers.add(new Word(splitEnglishNumbers[3], splitMiwokNumbers[3],R.drawable.number_four));
+        listOfNumbers.add(new Word(splitEnglishNumbers[4], splitMiwokNumbers[4],R.drawable.number_five));
+        listOfNumbers.add(new Word(splitEnglishNumbers[5], splitMiwokNumbers[5],R.drawable.number_six));
+        listOfNumbers.add(new Word(splitEnglishNumbers[6], splitMiwokNumbers[6],R.drawable.number_seven));
+        listOfNumbers.add(new Word(splitEnglishNumbers[7], splitMiwokNumbers[7],R.drawable.number_eight));
+        listOfNumbers.add(new Word(splitEnglishNumbers[8], splitMiwokNumbers[8],R.drawable.number_nine));
+        listOfNumbers.add(new Word(splitEnglishNumbers[9], splitMiwokNumbers[9],R.drawable.number_ten));
 
 
         WordAdapter adapter = new WordAdapter(this, listOfNumbers);

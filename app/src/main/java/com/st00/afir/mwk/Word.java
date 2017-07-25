@@ -5,8 +5,9 @@ package com.st00.afir.mwk;
  */
 
 public class Word {
+    private static final int NO_IMAGE_PROVIDED = -1;
     private String englishTranslation, miwokTranslation;
-    private int image;
+    private int image = NO_IMAGE_PROVIDED;
 
     public Word(String englishTranslation, String miwokTranslation) {
         this.englishTranslation = englishTranslation;
@@ -29,5 +30,10 @@ public class Word {
 
     public int getImage() {
         return image;
+    }
+
+    public boolean hasImage() {
+        if (image == NO_IMAGE_PROVIDED) return false;
+        return true;
     }
 }
