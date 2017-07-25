@@ -34,9 +34,16 @@ public class FamilyActivity extends AppCompatActivity {
         splitEnglishMembers = englishFamilyMembers.split(";");
         splitMiwokMembers = miwokFamilyMembers.split("\n");
 
-        for (int i = 0; i < splitEnglishMembers.length; ++i) {
-            listOfMembers.add(new Word(splitEnglishMembers[i], splitMiwokMembers[i]));
-        }
+        listOfMembers.add(new Word(splitEnglishMembers[0], splitMiwokMembers[0]));
+        listOfMembers.add(new Word(splitEnglishMembers[1], splitMiwokMembers[1]));
+        listOfMembers.add(new Word(splitEnglishMembers[2], splitMiwokMembers[2]));
+        listOfMembers.add(new Word(splitEnglishMembers[3], splitMiwokMembers[3]));
+        listOfMembers.add(new Word(splitEnglishMembers[4], splitMiwokMembers[4]));
+        listOfMembers.add(new Word(splitEnglishMembers[5], splitMiwokMembers[5]));
+        listOfMembers.add(new Word(splitEnglishMembers[6], splitMiwokMembers[6]));
+        listOfMembers.add(new Word(splitEnglishMembers[7], splitMiwokMembers[7]));
+        listOfMembers.add(new Word(splitEnglishMembers[8], splitMiwokMembers[8]));
+        listOfMembers.add(new Word(splitEnglishMembers[9], splitMiwokMembers[9]));
 
         WordAdapter adapter = new WordAdapter(this, listOfMembers);
         ListView listView = (ListView) findViewById(R.id.list);

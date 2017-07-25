@@ -24,12 +24,21 @@ public class NumbersActivity extends AppCompatActivity {
         splitEnglishNumbers = englishNumbers.split(" ");
         splitMiwokNumbers = miwokNumbers.split(" ");
 
-        for(int i = 0; i< splitEnglishNumbers.length ; ++i) {
-            listOfNumbers.add(new Word(splitEnglishNumbers[i],splitMiwokNumbers[i]));
-        }
+        //here we deleted the for loop, because we need to add images to each item
+        listOfNumbers.add(new Word(splitEnglishNumbers[0], splitMiwokNumbers[0]));
+        listOfNumbers.add(new Word(splitEnglishNumbers[1], splitMiwokNumbers[1]));
+        listOfNumbers.add(new Word(splitEnglishNumbers[2], splitMiwokNumbers[2]));
+        listOfNumbers.add(new Word(splitEnglishNumbers[3], splitMiwokNumbers[3]));
+        listOfNumbers.add(new Word(splitEnglishNumbers[4], splitMiwokNumbers[4]));
+        listOfNumbers.add(new Word(splitEnglishNumbers[5], splitMiwokNumbers[5]));
+        listOfNumbers.add(new Word(splitEnglishNumbers[6], splitMiwokNumbers[6]));
+        listOfNumbers.add(new Word(splitEnglishNumbers[7], splitMiwokNumbers[7]));
+        listOfNumbers.add(new Word(splitEnglishNumbers[8], splitMiwokNumbers[8]));
+        listOfNumbers.add(new Word(splitEnglishNumbers[9], splitMiwokNumbers[9]));
+
 
         WordAdapter adapter = new WordAdapter(this, listOfNumbers);
-        ListView myListView = (ListView)findViewById(R.id.list);
+        ListView myListView = (ListView) findViewById(R.id.list);
         myListView.setAdapter(adapter);
 
     }
