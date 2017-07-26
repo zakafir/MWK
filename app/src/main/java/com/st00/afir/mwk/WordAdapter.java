@@ -3,6 +3,7 @@ package com.st00.afir.mwk;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +19,18 @@ import java.util.List;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
-    public WordAdapter(@NonNull Context context, @NonNull List<Word> objects) {
+    private int mImageRessourceId;
+
+    public WordAdapter(@NonNull Context context, @NonNull List<Word> objects, int backgroundColor) {
         super(context, 0, objects);
+        this.mImageRessourceId = backgroundColor;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItemView = convertView;
-        if(listItemView == null) {
+        if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
@@ -44,13 +48,15 @@ public class WordAdapter extends ArrayAdapter<Word> {
         miwokTextView.setText(currentWord.getMiwokTranslation());
 
         ImageView miwokImageView = (ImageView) listItemView.findViewById(R.id.image);
-        if(currentWord.hasImage()){
+        if (currentWord.hasImage()) {
             miwokImageView.setImageResource(currentWord.getImage());
             miwokImageView.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             miwokImageView.setVisibility(View.GONE);
         }
+
+        View textContainer = (View) listItemView.findViewById(R.id.textContainer);
+        textContainer.setBackgroundColor(ContextCompat.getColor(getContext(), mImageRessourceId));
 
         // Return the whole list item layout (containing 2 TextViews )
         // so that it can be shown in the ListView

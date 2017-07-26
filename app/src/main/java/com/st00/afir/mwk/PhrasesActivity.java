@@ -49,7 +49,7 @@ public class PhrasesActivity extends AppCompatActivity {
             listOfPhrases.add(new Word(splitEnglishPhrases[i], splitMiwokPhrases[i]));
         }
 
-        WordAdapter adapter = new WordAdapter(this, listOfPhrases);
+        WordAdapter adapter = new WordAdapter(this, listOfPhrases,R.color.categoryPhrases);
         ListView myListView = (ListView) findViewById(R.id.list);
         myListView.setAdapter(adapter);
 

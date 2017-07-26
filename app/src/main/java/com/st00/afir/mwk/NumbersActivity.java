@@ -37,7 +37,7 @@ public class NumbersActivity extends AppCompatActivity {
         listOfNumbers.add(new Word(splitEnglishNumbers[9], splitMiwokNumbers[9],R.drawable.number_ten));
 
 
-        WordAdapter adapter = new WordAdapter(this, listOfNumbers);
+        WordAdapter adapter = new WordAdapter(this, listOfNumbers,R.color.categoryNumbers);
         ListView myListView = (ListView) findViewById(R.id.list);
         myListView.setAdapter(adapter);
 

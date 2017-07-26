@@ -35,7 +35,7 @@ public class ColorsActivity extends AppCompatActivity {
         listOfColors.add(new Word(splitEnglishColors[7], splitMiwokColors[7],R.drawable.color_mustard_yellow));
 
 
-        WordAdapter adapter = new WordAdapter(this,listOfColors);
+        WordAdapter adapter = new WordAdapter(this,listOfColors,R.color.categoryColors);
         ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(adapter);
     }
