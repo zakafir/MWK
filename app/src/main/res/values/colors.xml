@@ -6,10 +6,12 @@
     <color name="colorAccent">#03A9F4</color>
 
     <!-- New colors for the Miwok App-->
-    <color name="backgroundColor">#e0e0e0</color>
+    <color name="backgroundColor">#fff7da</color>
     <color name="categoryNumbers">#43a047</color>
     <color name="categoryFamily">#d81b60</color>
     <color name="categoryColors">#039be5</color>
     <color name="categoryPhrases">#f4511e</color>
+
+    <color name="backgroundImage">@color/backgroundColor</color>
 
 </resources>

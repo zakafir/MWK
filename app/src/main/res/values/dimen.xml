@@ -2,4 +2,9 @@
 <resources>
     <!-- Height of each list item -->
     <dimen name="list_item_height">88dp</dimen>
+    <dimen name="list_item_padding_Left">16dp</dimen>
+
+    <dimen name="size_of_Text">18dp</dimen>
+    <dimen name="image_height">88dp</dimen>
+    <dimen name="image_width">88dp</dimen>
 </resources>

@@ -1,35 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- This file show up the design of the items, how they can be shown-->
+<?xml version="1.0" encoding="utf-8"?><!-- This file show up the design of the items, how they can be shown-->
 
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:padding="16dp"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/imageItem" />
 
 
     <LinearLayout
         android:id="@+id/textContainer"
-        android:paddingLeft="16dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/listItemInfos"
+        android:gravity="center_vertical">
+
         <TextView
             android:id="@+id/miwokTextView"
-            tools:text="utti"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            style="@style/miwokWord"
+            tools:text="utti" />
 
         <TextView
             android:id="@+id/englishTextView"
-            tools:text="one"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            style="@style/englishWord"
+            tools:text="one" />
 
     </LinearLayout>
 

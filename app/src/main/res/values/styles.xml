@@ -13,9 +13,41 @@
         <item name="android:layout_height">@dimen/list_item_height</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:padding">16dp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    </style>
+
+    <style name="listItemInfos">
+        <item name="android:paddingLeft">@dimen/list_item_padding_Left</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/list_item_height</item>
+        <item name="android:background">@color/categoryPhrases</item>
+    </style>
+
+    <style name="imageItem">
+        <item name="android:layout_width">@dimen/image_width</item>
+        <item name="android:layout_height">@dimen/list_item_height</item>
+        <item name="android:background">@color/backgroundImage</item>
+    </style>
+
+    <style name="miwokWord">
+        <item name="android:paddingLeft">@dimen/list_item_padding_Left</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/size_of_Text</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="englishWord">
+        <item name="android:paddingLeft">@dimen/list_item_padding_Left</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/size_of_Text</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>
