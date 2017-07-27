@@ -24,7 +24,6 @@
         <item name="android:orientation">vertical</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/list_item_height</item>
-        <item name="android:background">@color/categoryPhrases</item>
     </style>
 
     <style name="imageItem">
