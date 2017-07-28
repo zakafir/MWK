@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- We change our LinearLayout to a ListVew, memory obstacles!!-->
+<!-- We added the attribute drawSelectorOnTop to provide a Touch feedBack-->
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/list"
-    tools:context="com.st00.afir.mwk.NumbersActivity">
+    tools:context="com.st00.afir.mwk.NumbersActivity"
+    android:drawSelectorOnTop="true">
 
 </ListView>
