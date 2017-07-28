@@ -1,46 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?><!-- This file show up the design of the items, how they can be shown-->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <ImageView
-        android:id="@+id/image"
-        style="@style/imageItem" />
-
+    android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/textContainer"
-        style="@style/listItemInfos"
-        android:gravity="center_vertical">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/miwokTextView"
-            style="@style/miwokWord"
-            tools:text="utti" />
+        <ImageView
+            android:id="@+id/image"
+            style="@style/imageItem" />
 
-        <TextView
-            android:id="@+id/englishTextView"
-            style="@style/englishWord"
-            tools:text="one" />
 
+        <LinearLayout
+            android:id="@+id/textContainer"
+            style="@style/listItemInfos"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/miwokTextView"
+                style="@style/miwokWord"
+                tools:text="utti" />
+
+            <TextView
+                android:id="@+id/englishTextView"
+                style="@style/englishWord"
+                tools:text="one" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
-
-    <!--<RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/list_item_height">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/alert_dark_frame"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
--->
-
-
-</LinearLayout>
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_play_circle_filled_white_24dp" />
+</RelativeLayout>
