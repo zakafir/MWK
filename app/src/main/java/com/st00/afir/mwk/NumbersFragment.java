@@ -4,25 +4,25 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FamilyActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class NumbersFragment extends Fragment {
 
-    private static String LOG_TAG = NumbersActivity.class.getSimpleName();
+    private static String englishNumbers = "one two three four five six seven eight nine ten";
+    private static String miwokNumbers = "lutti otiiko tolookosu oyyisa massokka temmokka kenekaku kawinta wo’e na’aacha";
     private MediaPlayer mMediaPlayer;
     private AudioManager audioManager;
-    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            releaseMediaPlayer();
-        }
-    };
     private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int i) {
@@ -47,46 +47,49 @@ public class FamilyActivity extends AppCompatActivity {
             }
         }
     };
+    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMediaPlayer();
+        }
+    };
+    private String[] splitEnglishNumbers, splitMiwokNumbers;
+    private List<Word> listOfNumbers = new ArrayList<>();
 
-    private static String englishFamilyMembers = "father;mother;son;daughter;older brother;" +
-            "younger brother;older sister;younger sister;grandmother;grandfather";
-    private static String miwokFamilyMembers = "әpә\n" +
-            "әṭa\n" +
-            "angsi\n" +
-            "tune\n" +
-            "taachi\n" +
-            "chalitti\n" +
-            "teṭe\n" +
-            "kolliti\n" +
-            "ama\n" +
-            "paapa\n";
-    private String[] splitEnglishMembers, splitMiwokMembers;
-    private List<Word> listOfMembers = new ArrayList<>();
+    public NumbersFragment() {
+        // Required empty public constructor
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        //audioManager to request audio focus
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        View rootView = inflater.inflate(R.layout.activity_all, container, false);
 
-        splitEnglishMembers = englishFamilyMembers.split(";");
-        splitMiwokMembers = miwokFamilyMembers.split("\n");
+        /** TODO: Insert all the code from the NumberActivity’s onCreate() method after the setContentView method call */
 
-        listOfMembers.add(new Word(splitEnglishMembers[0], splitMiwokMembers[0],R.drawable.family_father,R.raw.family_father));
-        listOfMembers.add(new Word(splitEnglishMembers[1], splitMiwokMembers[1],R.drawable.family_mother,R.raw.family_mother));
-        listOfMembers.add(new Word(splitEnglishMembers[2], splitMiwokMembers[2],R.drawable.family_son,R.raw.family_son));
-        listOfMembers.add(new Word(splitEnglishMembers[3], splitMiwokMembers[3],R.drawable.family_daughter,R.raw.family_daughter));
-        listOfMembers.add(new Word(splitEnglishMembers[4], splitMiwokMembers[4],R.drawable.family_older_brother,R.raw.family_older_brother));
-        listOfMembers.add(new Word(splitEnglishMembers[5], splitMiwokMembers[5],R.drawable.family_younger_brother,R.raw.family_younger_brother));
-        listOfMembers.add(new Word(splitEnglishMembers[6], splitMiwokMembers[6],R.drawable.family_older_sister,R.raw.family_older_sister));
-        listOfMembers.add(new Word(splitEnglishMembers[7], splitMiwokMembers[7],R.drawable.family_younger_sister,R.raw.family_younger_sister));
-        listOfMembers.add(new Word(splitEnglishMembers[8], splitMiwokMembers[8],R.drawable.family_grandmother,R.raw.family_grandmother));
-        listOfMembers.add(new Word(splitEnglishMembers[9], splitMiwokMembers[9],R.drawable.family_grandfather,R.raw.family_grandfather));
+//audioManager to request audio focus
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
-        WordAdapter adapter = new WordAdapter(this, listOfMembers,R.color.categoryFamily);
-        ListView listView = (ListView) findViewById(R.id.list);
+
+        splitEnglishNumbers = englishNumbers.split(" ");
+        splitMiwokNumbers = miwokNumbers.split(" ");
+
+        //here we deleted the for loop, because we need to add images to each item
+        listOfNumbers.add(new Word(splitEnglishNumbers[0], splitMiwokNumbers[0], R.drawable.number_one, R.raw.number_one));
+        listOfNumbers.add(new Word(splitEnglishNumbers[1], splitMiwokNumbers[1], R.drawable.number_two, R.raw.number_two));
+        listOfNumbers.add(new Word(splitEnglishNumbers[2], splitMiwokNumbers[2], R.drawable.number_three, R.raw.number_three));
+        listOfNumbers.add(new Word(splitEnglishNumbers[3], splitMiwokNumbers[3], R.drawable.number_four, R.raw.number_four));
+        listOfNumbers.add(new Word(splitEnglishNumbers[4], splitMiwokNumbers[4], R.drawable.number_five, R.raw.number_five));
+        listOfNumbers.add(new Word(splitEnglishNumbers[5], splitMiwokNumbers[5], R.drawable.number_six, R.raw.number_six));
+        listOfNumbers.add(new Word(splitEnglishNumbers[6], splitMiwokNumbers[6], R.drawable.number_seven, R.raw.number_seven));
+        listOfNumbers.add(new Word(splitEnglishNumbers[7], splitMiwokNumbers[7], R.drawable.number_eight, R.raw.number_eight));
+        listOfNumbers.add(new Word(splitEnglishNumbers[8], splitMiwokNumbers[8], R.drawable.number_nine, R.raw.number_nine));
+        listOfNumbers.add(new Word(splitEnglishNumbers[9], splitMiwokNumbers[9], R.drawable.number_ten, R.raw.number_ten));
+
+
+        WordAdapter adapter = new WordAdapter(getActivity(), listOfNumbers, R.color.categoryNumbers);
+        ListView listView = (ListView) rootView.findViewById(R.id.list);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,7 +100,7 @@ public class FamilyActivity extends AppCompatActivity {
                 releaseMediaPlayer();
 
                 // Get the {@link Word} object at the given position the user clicked on
-                Word word = listOfMembers.get(i);
+                Word word = listOfNumbers.get(i);
 
                 // Request audio focus so in order to play the audio file. The app needs to play a
                 // short audio file, so we will request audio focus with a short amount of time
@@ -110,7 +113,7 @@ public class FamilyActivity extends AppCompatActivity {
 
                     // Create and setup the {@link MediaPlayer} for the audio resource associated
                     // with the current word
-                    mMediaPlayer = MediaPlayer.create(FamilyActivity.this, word.getAudio());
+                    mMediaPlayer = MediaPlayer.create(getActivity(), word.getAudio());
 
                     // Start the audio file
                     mMediaPlayer.start();
@@ -121,12 +124,8 @@ public class FamilyActivity extends AppCompatActivity {
                 }
             }
         });
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        releaseMediaPlayer();
+        return rootView;
     }
 
     private void releaseMediaPlayer() {
@@ -144,5 +143,11 @@ public class FamilyActivity extends AppCompatActivity {
             // unregisters the AudioFocusChangeListener so we don't get anymore callbacks.
             audioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
     }
 }

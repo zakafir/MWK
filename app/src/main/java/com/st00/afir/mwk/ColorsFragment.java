@@ -1,28 +1,30 @@
 package com.st00.afir.mwk;
 
+
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NumbersActivity extends AppCompatActivity {
 
-    private static String LOG_TAG = NumbersActivity.class.getSimpleName();
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ColorsFragment extends Fragment {
+
+    private static String englishColors = "red;green;brown;gray;black;white;dusty yellow;mustard yellow";
+    private static String miwokColors = "weṭeṭṭi chokokki ṭakaakki ṭopoppi kululli kelelli ṭopiisә chiwiiṭә";
     private MediaPlayer mMediaPlayer;
     private AudioManager audioManager;
-    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            releaseMediaPlayer();
-        }
-    };
     private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int i) {
@@ -47,39 +49,43 @@ public class NumbersActivity extends AppCompatActivity {
             }
         }
     };
+    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMediaPlayer();
+        }
+    };
+    private String[] splitEnglishColors, splitMiwokColors;
+    private List<Word> listOfColors = new ArrayList<>();
 
-    private static String englishNumbers = "one two three four five six seven eight nine ten";
-    private static String miwokNumbers = "lutti otiiko tolookosu oyyisa massokka temmokka kenekaku kawinta wo’e na’aacha";
-    private String[] splitEnglishNumbers, splitMiwokNumbers;
-    private List<Word> listOfNumbers = new ArrayList<>();
+    public ColorsFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_all, container, false);
 
         //audioManager to request audio focus
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+
+        splitEnglishColors = englishColors.split(";");
+        splitMiwokColors = miwokColors.split(" ");
+
+        listOfColors.add(new Word(splitEnglishColors[0], splitMiwokColors[0], R.drawable.color_red, R.raw.color_red));
+        listOfColors.add(new Word(splitEnglishColors[1], splitMiwokColors[1], R.drawable.color_green, R.raw.color_green));
+        listOfColors.add(new Word(splitEnglishColors[2], splitMiwokColors[2], R.drawable.color_brown, R.raw.color_brown));
+        listOfColors.add(new Word(splitEnglishColors[3], splitMiwokColors[3], R.drawable.color_gray, R.raw.color_gray));
+        listOfColors.add(new Word(splitEnglishColors[4], splitMiwokColors[4], R.drawable.color_black, R.raw.color_black));
+        listOfColors.add(new Word(splitEnglishColors[5], splitMiwokColors[5], R.drawable.color_white, R.raw.color_white));
+        listOfColors.add(new Word(splitEnglishColors[6], splitMiwokColors[6], R.drawable.color_dusty_yellow, R.raw.color_dusty_yellow));
+        listOfColors.add(new Word(splitEnglishColors[7], splitMiwokColors[7], R.drawable.color_mustard_yellow, R.raw.color_mustard_yellow));
 
 
-        splitEnglishNumbers = englishNumbers.split(" ");
-        splitMiwokNumbers = miwokNumbers.split(" ");
-
-        //here we deleted the for loop, because we need to add images to each item
-        listOfNumbers.add(new Word(splitEnglishNumbers[0], splitMiwokNumbers[0], R.drawable.number_one,R.raw.number_one));
-        listOfNumbers.add(new Word(splitEnglishNumbers[1], splitMiwokNumbers[1], R.drawable.number_two,R.raw.number_two));
-        listOfNumbers.add(new Word(splitEnglishNumbers[2], splitMiwokNumbers[2], R.drawable.number_three,R.raw.number_three));
-        listOfNumbers.add(new Word(splitEnglishNumbers[3], splitMiwokNumbers[3], R.drawable.number_four,R.raw.number_four));
-        listOfNumbers.add(new Word(splitEnglishNumbers[4], splitMiwokNumbers[4], R.drawable.number_five,R.raw.number_five));
-        listOfNumbers.add(new Word(splitEnglishNumbers[5], splitMiwokNumbers[5], R.drawable.number_six,R.raw.number_six));
-        listOfNumbers.add(new Word(splitEnglishNumbers[6], splitMiwokNumbers[6], R.drawable.number_seven,R.raw.number_seven));
-        listOfNumbers.add(new Word(splitEnglishNumbers[7], splitMiwokNumbers[7], R.drawable.number_eight,R.raw.number_eight));
-        listOfNumbers.add(new Word(splitEnglishNumbers[8], splitMiwokNumbers[8], R.drawable.number_nine,R.raw.number_nine));
-        listOfNumbers.add(new Word(splitEnglishNumbers[9], splitMiwokNumbers[9], R.drawable.number_ten,R.raw.number_ten));
-
-
-        WordAdapter adapter = new WordAdapter(this, listOfNumbers,R.color.categoryNumbers);
-        ListView listView = (ListView) findViewById(R.id.list);
+        WordAdapter adapter = new WordAdapter(getActivity(), listOfColors, R.color.categoryColors);
+        ListView listView = (ListView) rootView.findViewById(R.id.list);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -90,7 +96,7 @@ public class NumbersActivity extends AppCompatActivity {
                 releaseMediaPlayer();
 
                 // Get the {@link Word} object at the given position the user clicked on
-                Word word = listOfNumbers.get(i);
+                Word word = listOfColors.get(i);
 
                 // Request audio focus so in order to play the audio file. The app needs to play a
                 // short audio file, so we will request audio focus with a short amount of time
@@ -103,7 +109,7 @@ public class NumbersActivity extends AppCompatActivity {
 
                     // Create and setup the {@link MediaPlayer} for the audio resource associated
                     // with the current word
-                    mMediaPlayer = MediaPlayer.create(NumbersActivity.this, word.getAudio());
+                    mMediaPlayer = MediaPlayer.create(getActivity(), word.getAudio());
 
                     // Start the audio file
                     mMediaPlayer.start();
@@ -114,12 +120,8 @@ public class NumbersActivity extends AppCompatActivity {
                 }
             }
         });
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        releaseMediaPlayer();
+        return rootView;
     }
 
     private void releaseMediaPlayer() {
@@ -137,5 +139,11 @@ public class NumbersActivity extends AppCompatActivity {
             // unregisters the AudioFocusChangeListener so we don't get anymore callbacks.
             audioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
     }
 }

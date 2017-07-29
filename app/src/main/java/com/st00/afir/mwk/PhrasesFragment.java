@@ -1,28 +1,48 @@
 package com.st00.afir.mwk;
 
+
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColorsActivity extends AppCompatActivity {
 
-    private static String LOG_TAG = NumbersActivity.class.getSimpleName();
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class PhrasesFragment extends Fragment {
+
+    private static String englishPhrases = "Where are you going?\n" +
+            "What is your name?\n" +
+            "My name is...\n" +
+            "How are you feeling?\n" +
+            "I’m feeling good.\n" +
+            "Are you coming\n" +
+            "Yes, I’m coming.\n" +
+            "I’m coming.\n" +
+            "Let’s go.\n" +
+            "Come here.";
+    private static String miwokPhrases = "minto wuksus\n" +
+            "tinnә oyaase'nә\n" +
+            "oyaaset...\n" +
+            "michәksәs?\n" +
+            "kuchi achit\n" +
+            "әәnәs'aa?\n" +
+            "hәә’ әәnәm\n" +
+            "әәnәm\n" +
+            "yoowutis\n" +
+            "әnni'nem";
     private MediaPlayer mMediaPlayer;
     private AudioManager audioManager;
-    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            releaseMediaPlayer();
-        }
-    };
     private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int i) {
@@ -47,35 +67,44 @@ public class ColorsActivity extends AppCompatActivity {
             }
         }
     };
+    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMediaPlayer();
+        }
+    };
+    private String[] splitEnglishPhrases, splitMiwokPhrases;
+    private List<Word> listOfPhrases = new ArrayList<>();
 
-    private static String englishColors = "red;green;brown;gray;black;white;dusty yellow;mustard yellow";
-    private static String miwokColors = "weṭeṭṭi chokokki ṭakaakki ṭopoppi kululli kelelli ṭopiisә chiwiiṭә";
-    private String[] splitEnglishColors, splitMiwokColors;
-    private List<Word> listOfColors = new ArrayList<>();
+    public PhrasesFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
+        View rootView = inflater.inflate(R.layout.activity_all, container, false);
         //audioManager to request audio focus
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
-        splitEnglishColors = englishColors.split(";");
-        splitMiwokColors = miwokColors.split(" ");
+        splitEnglishPhrases = englishPhrases.split("\n");
+        splitMiwokPhrases = miwokPhrases.split("\n");
 
-        listOfColors.add(new Word(splitEnglishColors[0], splitMiwokColors[0],R.drawable.color_red,R.raw.color_red));
-        listOfColors.add(new Word(splitEnglishColors[1], splitMiwokColors[1],R.drawable.color_green,R.raw.color_green));
-        listOfColors.add(new Word(splitEnglishColors[2], splitMiwokColors[2],R.drawable.color_brown,R.raw.color_brown));
-        listOfColors.add(new Word(splitEnglishColors[3], splitMiwokColors[3],R.drawable.color_gray,R.raw.color_gray));
-        listOfColors.add(new Word(splitEnglishColors[4], splitMiwokColors[4],R.drawable.color_black,R.raw.color_black));
-        listOfColors.add(new Word(splitEnglishColors[5], splitMiwokColors[5],R.drawable.color_white,R.raw.color_white));
-        listOfColors.add(new Word(splitEnglishColors[6], splitMiwokColors[6],R.drawable.color_dusty_yellow,R.raw.color_dusty_yellow));
-        listOfColors.add(new Word(splitEnglishColors[7], splitMiwokColors[7],R.drawable.color_mustard_yellow,R.raw.color_mustard_yellow));
+        listOfPhrases.add(new Word(splitEnglishPhrases[0], splitMiwokPhrases[0], R.raw.phrase_where_are_you_going));
+        listOfPhrases.add(new Word(splitEnglishPhrases[1], splitMiwokPhrases[1], R.raw.phrase_what_is_your_name));
+        listOfPhrases.add(new Word(splitEnglishPhrases[2], splitMiwokPhrases[2], R.raw.phrase_my_name_is));
+        listOfPhrases.add(new Word(splitEnglishPhrases[3], splitMiwokPhrases[3], R.raw.phrase_how_are_you_feeling));
+        listOfPhrases.add(new Word(splitEnglishPhrases[4], splitMiwokPhrases[4], R.raw.phrase_im_feeling_good));
+        listOfPhrases.add(new Word(splitEnglishPhrases[5], splitMiwokPhrases[5], R.raw.phrase_are_you_coming));
+        listOfPhrases.add(new Word(splitEnglishPhrases[6], splitMiwokPhrases[6], R.raw.phrase_yes_im_coming));
+        listOfPhrases.add(new Word(splitEnglishPhrases[7], splitMiwokPhrases[7], R.raw.phrase_im_coming));
+        listOfPhrases.add(new Word(splitEnglishPhrases[8], splitMiwokPhrases[8], R.raw.phrase_lets_go));
+        listOfPhrases.add(new Word(splitEnglishPhrases[9], splitMiwokPhrases[9], R.raw.phrase_come_here));
 
-
-        WordAdapter adapter = new WordAdapter(this,listOfColors,R.color.categoryColors);
-        ListView listView = (ListView)findViewById(R.id.list);
+        WordAdapter adapter = new WordAdapter(getActivity(), listOfPhrases, R.color.categoryPhrases);
+        ListView listView = (ListView) rootView.findViewById(R.id.list);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -86,7 +115,7 @@ public class ColorsActivity extends AppCompatActivity {
                 releaseMediaPlayer();
 
                 // Get the {@link Word} object at the given position the user clicked on
-                Word word = listOfColors.get(i);
+                Word word = listOfPhrases.get(i);
 
                 // Request audio focus so in order to play the audio file. The app needs to play a
                 // short audio file, so we will request audio focus with a short amount of time
@@ -99,7 +128,7 @@ public class ColorsActivity extends AppCompatActivity {
 
                     // Create and setup the {@link MediaPlayer} for the audio resource associated
                     // with the current word
-                    mMediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getAudio());
+                    mMediaPlayer = MediaPlayer.create(getActivity(), word.getAudio());
 
                     // Start the audio file
                     mMediaPlayer.start();
@@ -110,12 +139,8 @@ public class ColorsActivity extends AppCompatActivity {
                 }
             }
         });
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        releaseMediaPlayer();
+        return rootView;
     }
 
     private void releaseMediaPlayer() {
@@ -133,5 +158,11 @@ public class ColorsActivity extends AppCompatActivity {
             // unregisters the AudioFocusChangeListener so we don't get anymore callbacks.
             audioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
     }
 }

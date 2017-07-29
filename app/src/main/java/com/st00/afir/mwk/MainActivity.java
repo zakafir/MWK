@@ -1,9 +1,9 @@
 package com.st00.afir.mwk;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,42 +15,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvNumbers = (TextView)findViewById(R.id.numbers);
-        tvColors = (TextView)findViewById(R.id.colors);
-        tvPhrases = (TextView)findViewById(R.id.phrases);
-        tvFamily = (TextView)findViewById(R.id.family_members);
+        // Find the view pager that will allow the user to swipe between fragments
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        //button events
-        tvNumbers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(MainActivity.this, NumbersActivity.class);
-                MainActivity.this.startActivity(myIntent);
-            }
-        });
+        // Create an adapter that knows which fragment should be shown on each page
+        MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
 
-        tvColors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(MainActivity.this, ColorsActivity.class);
-                MainActivity.this.startActivity(myIntent);
-            }
-        });
+        // Set the adapter onto the view pager
+        viewPager.setAdapter(adapter);
 
-        tvPhrases.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(MainActivity.this, PhrasesActivity.class);
-                MainActivity.this.startActivity(myIntent);
-            }
-        });
+        // Give the TabLayout the ViewPager
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
-        tvFamily.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(MainActivity.this, FamilyActivity.class);
-                MainActivity.this.startActivity(myIntent);
-            }
-        });
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

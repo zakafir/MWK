@@ -1,28 +1,40 @@
 package com.st00.afir.mwk;
 
+
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhrasesActivity extends AppCompatActivity {
 
-    private static String LOG_TAG = NumbersActivity.class.getSimpleName();
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class FamilyFragment extends Fragment {
+
+    private static String englishFamilyMembers = "father;mother;son;daughter;older brother;" +
+            "younger brother;older sister;younger sister;grandmother;grandfather";
+    private static String miwokFamilyMembers = "әpә\n" +
+            "әṭa\n" +
+            "angsi\n" +
+            "tune\n" +
+            "taachi\n" +
+            "chalitti\n" +
+            "teṭe\n" +
+            "kolliti\n" +
+            "ama\n" +
+            "paapa\n";
     private MediaPlayer mMediaPlayer;
     private AudioManager audioManager;
-    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            releaseMediaPlayer();
-        }
-    };
     private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int i) {
@@ -47,58 +59,44 @@ public class PhrasesActivity extends AppCompatActivity {
             }
         }
     };
+    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMediaPlayer();
+        }
+    };
+    private String[] splitEnglishMembers, splitMiwokMembers;
+    private List<Word> listOfMembers = new ArrayList<>();
 
+    public FamilyFragment() {
+        // Required empty public constructor
+    }
 
-
-    private static String englishPhrases = "Where are you going?\n" +
-            "What is your name?\n" +
-            "My name is...\n" +
-            "How are you feeling?\n" +
-            "I’m feeling good.\n" +
-            "Are you coming\n" +
-            "Yes, I’m coming.\n" +
-            "I’m coming.\n" +
-            "Let’s go.\n" +
-            "Come here.";
-
-    private static String miwokPhrases = "minto wuksus\n" +
-            "tinnә oyaase'nә\n" +
-            "oyaaset...\n" +
-            "michәksәs?\n" +
-            "kuchi achit\n" +
-            "әәnәs'aa?\n" +
-            "hәә’ әәnәm\n" +
-            "әәnәm\n" +
-            "yoowutis\n" +
-            "әnni'nem";
-
-    private String[] splitEnglishPhrases, splitMiwokPhrases;
-    private List<Word> listOfPhrases = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
+        View rootView = inflater.inflate(R.layout.activity_all, container, false);
         //audioManager to request audio focus
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
-        splitEnglishPhrases = englishPhrases.split("\n");
-        splitMiwokPhrases = miwokPhrases.split("\n");
+        splitEnglishMembers = englishFamilyMembers.split(";");
+        splitMiwokMembers = miwokFamilyMembers.split("\n");
 
-        listOfPhrases.add(new Word(splitEnglishPhrases[0], splitMiwokPhrases[0],R.raw.phrase_where_are_you_going));
-        listOfPhrases.add(new Word(splitEnglishPhrases[1], splitMiwokPhrases[1],R.raw.phrase_what_is_your_name));
-        listOfPhrases.add(new Word(splitEnglishPhrases[2], splitMiwokPhrases[2],R.raw.phrase_my_name_is));
-        listOfPhrases.add(new Word(splitEnglishPhrases[3], splitMiwokPhrases[3],R.raw.phrase_how_are_you_feeling));
-        listOfPhrases.add(new Word(splitEnglishPhrases[4], splitMiwokPhrases[4],R.raw.phrase_im_feeling_good));
-        listOfPhrases.add(new Word(splitEnglishPhrases[5], splitMiwokPhrases[5],R.raw.phrase_are_you_coming));
-        listOfPhrases.add(new Word(splitEnglishPhrases[6], splitMiwokPhrases[6],R.raw.phrase_yes_im_coming));
-        listOfPhrases.add(new Word(splitEnglishPhrases[7], splitMiwokPhrases[7],R.raw.phrase_im_coming));
-        listOfPhrases.add(new Word(splitEnglishPhrases[8], splitMiwokPhrases[8],R.raw.phrase_lets_go));
-        listOfPhrases.add(new Word(splitEnglishPhrases[9], splitMiwokPhrases[9],R.raw.phrase_come_here));
+        listOfMembers.add(new Word(splitEnglishMembers[0], splitMiwokMembers[0], R.drawable.family_father, R.raw.family_father));
+        listOfMembers.add(new Word(splitEnglishMembers[1], splitMiwokMembers[1], R.drawable.family_mother, R.raw.family_mother));
+        listOfMembers.add(new Word(splitEnglishMembers[2], splitMiwokMembers[2], R.drawable.family_son, R.raw.family_son));
+        listOfMembers.add(new Word(splitEnglishMembers[3], splitMiwokMembers[3], R.drawable.family_daughter, R.raw.family_daughter));
+        listOfMembers.add(new Word(splitEnglishMembers[4], splitMiwokMembers[4], R.drawable.family_older_brother, R.raw.family_older_brother));
+        listOfMembers.add(new Word(splitEnglishMembers[5], splitMiwokMembers[5], R.drawable.family_younger_brother, R.raw.family_younger_brother));
+        listOfMembers.add(new Word(splitEnglishMembers[6], splitMiwokMembers[6], R.drawable.family_older_sister, R.raw.family_older_sister));
+        listOfMembers.add(new Word(splitEnglishMembers[7], splitMiwokMembers[7], R.drawable.family_younger_sister, R.raw.family_younger_sister));
+        listOfMembers.add(new Word(splitEnglishMembers[8], splitMiwokMembers[8], R.drawable.family_grandmother, R.raw.family_grandmother));
+        listOfMembers.add(new Word(splitEnglishMembers[9], splitMiwokMembers[9], R.drawable.family_grandfather, R.raw.family_grandfather));
 
-        WordAdapter adapter = new WordAdapter(this, listOfPhrases,R.color.categoryPhrases);
-        ListView listView = (ListView) findViewById(R.id.list);
+        WordAdapter adapter = new WordAdapter(getActivity(), listOfMembers, R.color.categoryFamily);
+        ListView listView = (ListView) rootView.findViewById(R.id.list);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -109,7 +107,7 @@ public class PhrasesActivity extends AppCompatActivity {
                 releaseMediaPlayer();
 
                 // Get the {@link Word} object at the given position the user clicked on
-                Word word = listOfPhrases.get(i);
+                Word word = listOfMembers.get(i);
 
                 // Request audio focus so in order to play the audio file. The app needs to play a
                 // short audio file, so we will request audio focus with a short amount of time
@@ -122,7 +120,7 @@ public class PhrasesActivity extends AppCompatActivity {
 
                     // Create and setup the {@link MediaPlayer} for the audio resource associated
                     // with the current word
-                    mMediaPlayer = MediaPlayer.create(PhrasesActivity.this, word.getAudio());
+                    mMediaPlayer = MediaPlayer.create(getActivity(), word.getAudio());
 
                     // Start the audio file
                     mMediaPlayer.start();
@@ -134,12 +132,7 @@ public class PhrasesActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        releaseMediaPlayer();
+        return rootView;
     }
 
     private void releaseMediaPlayer() {
@@ -157,5 +150,11 @@ public class PhrasesActivity extends AppCompatActivity {
             // unregisters the AudioFocusChangeListener so we don't get anymore callbacks.
             audioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
     }
 }
